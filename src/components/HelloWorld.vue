@@ -1,33 +1,188 @@
 <template>
   <h1>{{ msg }}</h1>
 
+ 
+<button id="duplicateBtn" class="btn">Duplicate</button>
+
+<button id="changeBGColorBtn" class = "btn">Change Background Color</button>
+
+<button id="changeTitleBtn" class = "btn">Change title</button>
+
+<button id="deleteBtn" class = "btn">Delete</button>
+
+<section class="all">
+<header class ="header">
+  <h1 id = "mainTitle" class="title">Shiny Fuecoco!!!:)</h1>
+  </header>
+<section class="paragraph">
+  <img src = "https://www.serebii.net/Shiny/SV/new/909.png" width=300px>
+    
   <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
+This is shiny Fuecoco. A low shiny quality Fuecoco. Fuecoco best boy. Fuecoco head empty. Fuecoco is a bipedal crocodilian Pokémon with a mostly red body and a white stomach and face. Its body contains a small flame sac, which constantly leaks fire energy due to its size. Fuecoco is laid-back and does things at its own pace. It enjoys eating, and it will rush towards any food it sees.
+  </p>
+
+    <button id = "detailBtn" class="detailButton">Detail</button>
     </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
+   </section>
+  
+</section>
 
-  <button type="button" @click="state.count++">count is: {{ state.count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
-</template>
 
-<script setup>
-import { defineProps, reactive } from 'vue'
 
-defineProps({
-  msg: String
-})
 
-const state = reactive({ count: 0 })
-</script>
-
-<style scoped>
-a {
-  color: #42b983;
+ .btn{
+  padding: 5px;
+  margin: 5px; 
+  border: 5px solid pink;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
 }
+
+.btn:hover{
+  background-color: pink;
+}
+
+.btn:focus {
+  background-color: hotpink; 
+}
+
+.all{
+  border-style: dotted;
+  border-width: 10px;
+  border-color: pink;
+  width: 500px;
+  max-width: 600px;
+  margin: auto;
+  background-color: skyblue;
+}
+
+.title{
+  text-align: center;
+  font-size: 40px;
+}
+
+.header{
+  text-align: center;
+}
+.paragraph{
+   text-align: center;
+}
+img {
+  width: 400px;
+}
+
+p {
+  text-align: center; 
+  font-size: 20px;
+  padding: 15px;
+  color: red;
+}
+
+.detailButton {
+  padding: 5px;
+  margin: 5px; 
+  border: 5px solid pink;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline; 
+}
+
+  @media (min-width: 500px) and (max-width: 800px) {
+    
+    .detailButton {
+      display: none;
+    }
+
+@media (max-width: 500px) {
+  .all{
+    transform: scale(0.8);
+  }
+}
+
+
+
+
+
+const duplicateBtn = document.querySelector('#duplicateBtn');
+
+const changeColorButton = document.querySelector("#changeBGColorBtn");
+
+const changeTitle = document.querySelector("#changeTitleBtn");
+
+const deleteBtn = document.querySelector("#deleteBtn");
+
+const firstCard = document.querySelector('.all');
+
+const fuecocoDescription = document.querySelector('p');
+
+const detailBtn = document.getElementById("detailBtn");
+
+fuecocoDescription.style.display = "none";
+
+duplicateBtn.addEventListener("click", function(e){   
+ const cloneCard =  firstCard.cloneNode(true);
+  document.body.appendChild(cloneCard);       
+});
+
+//change details button to hot pink when hovered
+detailBtn.addEventListener("mouseenter", (event) => {
+  // highlight the mouseenter target
+  event.target.style.background= "hotpink";
+  
+});
+
+
+
+detailBtn.addEventListener("mouseleave", (event) => {
+  // highlight the mouseenter target
+  event.target.style.background = "";
+  detailBtn.blur()
+});
+
+
+//hide paragraph
+detailBtn.addEventListener("click", function(e){
+   var paragraphs = fuecocoDescription;
+  if (paragraphs.style.display === "none"){
+    paragraphs.style.display = "block"
+  } else {
+    paragraphs.style.display = "none";
+  }
+  
+});
+
+//change bg color
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+changeColorButton.addEventListener("click", function(e){   
+     firstCard.style.backgroundColor = getRandomColor(); 
+});
+
+
+//change title text
+changeTitle.addEventListener("click", function(e){   
+  var x = document.getElementById("mainTitle");
+  if (x.innerHTML === "Shiny Fuecoco!!!:)") {
+    x.innerHTML = "Something Else";
+  } else {
+    x.innerHTML = "Shiny Fuecoco!!!:)";
+  }
+});
+
+
+//delete duplicates
+deleteBtn.addEventListener("click", function(e){ 
+  document.body.removeChild(document.querySelector('.all'));
+});
+
 </style>
