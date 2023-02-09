@@ -34,7 +34,7 @@ This is shiny Fuecoco. A low shiny quality Fuecoco. Fuecoco best boy. Fuecoco he
 
 
 
-
+<script> 
 
 const duplicateBtn = document.querySelector('#duplicateBtn');
 
@@ -114,5 +114,5 @@ changeTitle.addEventListener("click", function(e){
 deleteBtn.addEventListener("click", function(e){ 
   document.body.removeChild(document.querySelector('.all'));
 });
-
+</script>
 </style>
